@@ -75,16 +75,16 @@ int main(int argc, char **argv)
       //hls-fpga-machine-learning insert data
       std::vector<float>::const_iterator in_begin = in.cbegin();
       std::vector<float>::const_iterator in_end;
-      input_t dense_input[N_INPUT_1_1];
+      input_t input1[N_INPUT_1_1];
       in_end = in_begin + (N_INPUT_1_1);
-      std::copy(in_begin, in_end, dense_input);
+      std::copy(in_begin, in_end, input1);
       in_begin = in_end;
       result_t layer5_out[N_LAYER_4]{};
       std::fill_n(layer5_out, 10, 0.);
 
       //hls-fpga-machine-learning insert top-level-function
       unsigned short size_in1,size_out1;
-      myproject(dense_input,layer5_out,size_in1,size_out1);
+      myproject(input1,layer5_out,size_in1,size_out1);
 
       //hls-fpga-machine-learning insert tb-output
       for(int i = 0; i < N_LAYER_4; i++) {
@@ -113,14 +113,14 @@ int main(int argc, char **argv)
   } else {
     std::cout << "INFO: Unable to open input/predictions file, using default input." << std::endl;
     //hls-fpga-machine-learning insert zero
-    input_t dense_input[N_INPUT_1_1];
-    std::fill_n(dense_input, N_INPUT_1_1, 0.);
+    input_t input1[N_INPUT_1_1];
+    std::fill_n(input1, N_INPUT_1_1, 0.);
     result_t layer5_out[N_LAYER_4]{};
       std::fill_n(layer5_out, 10, 0.);
 
     //hls-fpga-machine-learning insert top-level-function
     unsigned short size_in1,size_out1;
-    myproject(dense_input,layer5_out,size_in1,size_out1);
+    myproject(input1,layer5_out,size_in1,size_out1);
 
     //hls-fpga-machine-learning insert output
     for(int i = 0; i < N_LAYER_4; i++) {

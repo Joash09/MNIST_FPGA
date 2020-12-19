@@ -65,7 +65,7 @@ if {$opt(reset)} {
   open_solution "solution1"
 }
 catch {config_array_partition -maximum_size 4096}
-set_part {XC7K325T-2FFG900C}
+set_part {xcu250-figd2104-2L-e}
 create_clock -period 5 -name default
 
 

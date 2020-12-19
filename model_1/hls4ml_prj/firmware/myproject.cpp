@@ -22,16 +22,16 @@
 #include "parameters.h"
 
 void myproject(
-    input_t dense_input[N_INPUT_1_1],
+    input_t input1[N_INPUT_1_1],
     result_t layer5_out[N_LAYER_4],
     unsigned short &const_size_in_1,
     unsigned short &const_size_out_1
 ) {
 
     //hls-fpga-machine-learning insert IO
-    #pragma HLS ARRAY_RESHAPE variable=dense_input complete dim=0
+    #pragma HLS ARRAY_RESHAPE variable=input1 complete dim=0
     #pragma HLS ARRAY_PARTITION variable=layer5_out complete dim=0
-    #pragma HLS INTERFACE ap_vld port=dense_input,layer5_out 
+    #pragma HLS INTERFACE ap_vld port=input1,layer5_out 
     #pragma HLS PIPELINE 
 
     const_size_in_1 = N_INPUT_1_1;
@@ -57,7 +57,7 @@ void myproject(
 
     layer2_t layer2_out[N_LAYER_2];
     #pragma HLS ARRAY_PARTITION variable=layer2_out complete dim=0
-    nnet::dense_latency<input_t, layer2_t, config2>(dense_input, layer2_out, w2, b2);
+    nnet::dense_latency<input_t, layer2_t, config2>(input1, layer2_out, w2, b2);
 
     layer3_t layer3_out[N_LAYER_2];
     #pragma HLS ARRAY_PARTITION variable=layer3_out complete dim=0
