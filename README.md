@@ -20,5 +20,5 @@ You can now run through the notebook.
 
 ## TODO:
 
-* Compile model to FPGA
+* Compile model to FPGA (currently resource usage is larger than any FPGA I own)
 * Write up a testbench for Vivado simulation
